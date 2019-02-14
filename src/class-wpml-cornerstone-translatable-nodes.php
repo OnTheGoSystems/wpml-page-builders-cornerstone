@@ -9,7 +9,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 
 	/**
 	 * @param string|int $node_id
-	 * @param stdClass $settings
+	 * @param array $settings
 	 *
 	 * @return WPML_PB_String[]
 	 */
@@ -31,7 +31,8 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 							$settings[ $field_key ],
 							$this->get_string_name( $node_id, $field, $settings ),
 							$field['type'],
-							$field['editor_type']
+							$field['editor_type'],
+							$this->get_wrap_tag( $settings )
 						);
 
 						$strings[] = $string;
@@ -52,10 +53,10 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 
 	/**
 	 * @param string $node_id
-	 * @param stdClass $settings
+	 * @param array $settings
 	 * @param WPML_PB_String $string
 	 *
-	 * @return stdClass
+	 * @return array
 	 */
 	public function update( $node_id, $settings, WPML_PB_String $string ) {
 
@@ -88,7 +89,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 	/**
 	 * @param string $node_id
 	 * @param array $field
-	 * @param stdClass $settings
+	 * @param array $settings
 	 *
 	 * @return string
 	 */
@@ -97,8 +98,26 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 	}
 
 	/**
+	 * Get wrap tag for string.
+	 * Used for SEO, can contain (h1...h6, etc.)
+	 *
+	 * @param array $settings Field settings.
+	 *
+	 * @return string
+	 */
+	private function get_wrap_tag( $settings ) {
+		if ( isset( $settings['_type'] ) && 'headline' === $settings['_type'] ) {
+			if ( isset( $settings['text_tag'] ) ) {
+				return $settings['text_tag'];
+			}
+		}
+
+		return '';
+	}
+
+	/**
 	 * @param array $node_data
-	 * @param stdClass $settings
+	 * @param array $settings
 	 *
 	 * @return bool
 	 */
