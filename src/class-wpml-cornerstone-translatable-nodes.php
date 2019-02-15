@@ -57,7 +57,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 						/**
 						 * Node object.
 						 *
-						 * @var WPML_Beaver_Builder_Module_With_Items $node
+						 * @var WPML_Cornerstone_Module_With_Items $node
 						 */
 						$node    = new $node_data['integration-class']();
 						$strings = $node->get( $node_id, $settings, $strings );
@@ -101,7 +101,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 						/**
 						 * Node object.
 						 *
-						 * @var WPML_Beaver_Builder_Module_With_Items $node
+						 * @var WPML_Cornerstone_Module_With_Items $node
 						 */
 						$node     = new $node_data['integration-class']();
 						$settings = $node->update( $node_id, $settings, $string );
