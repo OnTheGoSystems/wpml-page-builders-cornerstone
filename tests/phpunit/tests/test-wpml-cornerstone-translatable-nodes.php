@@ -17,7 +17,7 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 	/**
 	 * Test get method.
 	 *
-	 * @dataProvider node_data_provider
+	 * @dataProvider dp_valid_nodes
 	 *
 	 * @param string $type                 Node type.
 	 * @param string $field                Node field.
@@ -34,7 +34,7 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 			'_type' => $type,
 			$field  => rand_str(),
 		);
-		if ( 'heading' === $type ) {
+		if ( 'headline' === $type ) {
 			$settings['text_tag'] = $wrap_tag;
 		}
 
@@ -46,7 +46,7 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 		$this->assertEquals( $field . '-' . $settings['_type'] . '-' . $node_id, $string->get_name() );
 		$this->assertEquals( $expected_title, $string->get_title() );
 		$this->assertEquals( $expected_editor_type, $string->get_editor_type() );
-		if ( 'heading' === $type ) {
+		if ( 'headline' === $type ) {
 			$this->assertEquals( $wrap_tag, $string->get_wrap_tag() );
 		}
 	}
@@ -56,9 +56,8 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 	 *
 	 * @return array
 	 */
-	public function node_data_provider() {
+	public function dp_valid_nodes() {
 		return array(
-			array( 'headline', 'text_content', 'Headline text content', 'VISUAL' ),
 			array( 'alert', 'alert_content', 'Alert Content', 'VISUAL' ),
 			array( 'text', 'text_content', 'Text content', 'VISUAL' ),
 			array( 'quote', 'quote_content', 'Quote content', 'VISUAL' ),
@@ -76,6 +75,23 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 			array( 'search-modal', 'search_placeholder', 'Search Modal: placeholder', 'LINE' ),
 			array( 'search-dropdown', 'search_placeholder', 'Search Dropdown: placeholder', 'LINE' ),
 		);
+	}
+
+	/**
+	 * Test get method with invalid node.
+	 */
+	public function test_get_with_invalid_node() {
+		\WP_Mock::wpPassthruFunction( '__' );
+
+		$node_id  = mt_rand( 1, 100 );
+		$settings = array(
+			'_type'              => 'invalid-node',
+			'invalid_node_field' => rand_str(),
+		);
+
+		$subject = new WPML_Cornerstone_Translatable_Nodes();
+		$strings = $subject->get( $node_id, $settings );
+		$this->assertCount( 0, $strings );
 	}
 
 	/**
