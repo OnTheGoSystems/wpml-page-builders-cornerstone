@@ -64,8 +64,8 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 						// phpcs:disable Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 					} catch ( Exception $e ) {
 						// Nothing to do with the exception, we do not handle it.
-						// phpcs:enable
 					}
+					// phpcs:enable Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 				}
 			}
 		}
@@ -108,8 +108,8 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 						// phpcs:disable Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 					} catch ( Exception $e ) {
 						// Nothing to do with the exception, we do not handle it.
-						// phpcs:enable
 					}
+					// phpcs:enable Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 				}
 			}
 		}

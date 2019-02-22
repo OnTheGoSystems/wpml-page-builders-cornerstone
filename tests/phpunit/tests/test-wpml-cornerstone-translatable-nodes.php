@@ -17,6 +17,7 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 	/**
 	 * Test get method.
 	 *
+	 * @test
 	 * @dataProvider dp_valid_nodes
 	 *
 	 * @param string $type                 Node type.
@@ -79,6 +80,8 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 
 	/**
 	 * Test get method with invalid node.
+	 *
+	 * @test
 	 */
 	public function it_handles_invalid_nodes() {
 		\WP_Mock::wpPassthruFunction( '__' );
@@ -96,8 +99,10 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 
 	/**
 	 * Test update method.
+	 *
+	 * @test
 	 */
-	public function test_update() {
+	public function it_tests_update() {
 		$node_id = mt_rand( 1, 100 );
 
 		$settings = array(
