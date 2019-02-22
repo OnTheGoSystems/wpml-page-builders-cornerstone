@@ -24,7 +24,7 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 	 * @param string $expected_title       Expected title.
 	 * @param string $expected_editor_type Expected editor type.
 	 */
-	public function test_get( $type, $field, $expected_title, $expected_editor_type ) {
+	public function it_handles_valid_nodes( $type, $field, $expected_title, $expected_editor_type ) {
 		$wrap_tag = 'h2';
 
 		\WP_Mock::wpPassthruFunction( '__' );
@@ -52,7 +52,7 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 	}
 
 	/**
-	 * Data provider for test_get().
+	 * Data provider for it_handles_valid_nodes().
 	 *
 	 * @return array
 	 */
@@ -80,7 +80,7 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 	/**
 	 * Test get method with invalid node.
 	 */
-	public function test_get_with_invalid_node() {
+	public function it_handles_invalid_nodes() {
 		\WP_Mock::wpPassthruFunction( '__' );
 
 		$node_id  = mt_rand( 1, 100 );
