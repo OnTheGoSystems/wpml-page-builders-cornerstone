@@ -98,7 +98,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 		              ->with( $meta_field_data )
 		              ->willReturn( $meta_field_data );
 		$data_settings->method( 'prepare_data_for_saving' )
-		              ->with( $meta_field_translated_data )
+		              ->with( $meta_field_data )
 		              ->willReturn( $meta_field_translated_data );
 		$data_settings->method( 'get_fields_to_save' )
 		              ->willReturn( array( '_cornerstone_data' ) );
@@ -155,7 +155,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 	 */
 	private function get_translatable_nodes() {
 		return array(
-			'alert'                   => array(
+			'alert'                    => array(
 				'conditions' => array( '_type' => 'alert' ),
 				'fields'     => array(
 					array(
@@ -165,7 +165,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'text'                    => array(
+			'text'                     => array(
 				'conditions' => array( '_type' => 'text' ),
 				'fields'     => array(
 					array(
@@ -175,7 +175,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'quote'                   => array(
+			'quote'                    => array(
 				'conditions' => array( '_type' => 'quote' ),
 				'fields'     => array(
 					array(
@@ -190,7 +190,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'counter'                 => array(
+			'counter'                  => array(
 				'conditions' => array( '_type' => 'counter' ),
 				'fields'     => array(
 					array(
@@ -205,7 +205,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'content-area'            => array(
+			'content-area'             => array(
 				'conditions' => array( '_type' => 'content-area' ),
 				'fields'     => array(
 					array(
@@ -215,7 +215,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'breadcrumbs'             => array(
+			'breadcrumbs'              => array(
 				'conditions' => array( '_type' => 'breadcrumbs' ),
 				'fields'     => array(
 					array(
@@ -225,7 +225,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'audio'                   => array(
+			'audio'                    => array(
 				'conditions' => array( '_type' => 'audio' ),
 				'fields'     => array(
 					array(
@@ -235,7 +235,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'headline'                => array(
+			'headline'                 => array(
 				'conditions' => array( '_type' => 'headline' ),
 				'fields'     => array(
 					array(
@@ -245,7 +245,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'classic:custom-headline' => array(
+			'classic:custom-headline'  => array(
 				'conditions' => array( '_type' => 'classic:custom-headline' ),
 				'fields'     => array(
 					array(
@@ -255,7 +255,17 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'content-area-off-canvas' => array(
+			'classic:feature-headline' => array(
+				'conditions' => array( '_type' => 'classic:feature-headline' ),
+				'fields'     => array(
+					array(
+						'field'       => 'content',
+						'type'        => __( 'Classic feature headline text content', 'sitepress' ),
+						'editor_type' => 'VISUAL',
+					),
+				),
+			),
+			'content-area-off-canvas'  => array(
 				'conditions' => array( '_type' => 'content-area-off-canvas' ),
 				'fields'     => array(
 					array(
@@ -265,7 +275,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'content-area-modal'      => array(
+			'content-area-modal'       => array(
 				'conditions' => array( '_type' => 'content-area-modal' ),
 				'fields'     => array(
 					array(
@@ -275,7 +285,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'content-area-dropdown'   => array(
+			'content-area-dropdown'    => array(
 				'conditions' => array( '_type' => 'content-area-dropdown' ),
 				'fields'     => array(
 					array(
@@ -285,7 +295,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'button'                  => array(
+			'button'                   => array(
 				'conditions' => array( '_type' => 'button' ),
 				'fields'     => array(
 					array(
@@ -300,7 +310,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'video'                   => array(
+			'video'                    => array(
 				'conditions' => array( '_type' => 'video' ),
 				'fields'     => array(
 					array(
@@ -310,7 +320,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'search-inline'           => array(
+			'search-inline'            => array(
 				'conditions' => array( '_type' => 'search-inline' ),
 				'fields'     => array(
 					array(
@@ -320,7 +330,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'search-modal'            => array(
+			'search-modal'             => array(
 				'conditions' => array( '_type' => 'search-modal' ),
 				'fields'     => array(
 					array(
@@ -330,7 +340,7 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'search-dropdown'         => array(
+			'search-dropdown'          => array(
 				'conditions' => array( '_type' => 'search-dropdown' ),
 				'fields'     => array(
 					array(
@@ -340,12 +350,12 @@ class Test_WPML_Cornerstone_Update_Translation extends OTGS_TestCase {
 					),
 				),
 			),
-			'accordion'               => array(
+			'accordion'                => array(
 				'conditions'        => array( '_type' => 'accordion' ),
 				'fields'            => array(),
 				'integration-class' => 'WPML_Cornerstone_Accordion',
 			),
-			'tabs'                    => array(
+			'tabs'                     => array(
 				'conditions'        => array( '_type' => 'tabs' ),
 				'fields'            => array(),
 				'integration-class' => 'WPML_Cornerstone_Tabs',

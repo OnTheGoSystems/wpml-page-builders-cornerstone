@@ -42,6 +42,9 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 		if ( 'classic:custom-headline' === $type ) {
 			$settings['level'] = $wrap_tag;
 		}
+		if ( 'classic:feature-headline' === $type ) {
+			$settings['level'] = $wrap_tag;
+		}
 
 		$subject = new WPML_Cornerstone_Translatable_Nodes();
 		$strings = $subject->get( $node_id, $settings );
@@ -75,7 +78,7 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 			array( 'breadcrumbs', 'breadcrumbs_home_label_text', 'Breadcrumbs: home label text', 'LINE' ),
 			array( 'audio', 'audio_embed_code', 'Audio: embed code', 'VISUAL' ),
 			array( 'headline', 'text_content', 'Headline text content', 'VISUAL' ),
-			array( 'classic:custom-headline', 'content', 'Classic headline text content', 'VISUAL' ),
+			array( 'classic:custom-headline', 'content', 'Classic custom headline text content', 'VISUAL' ),
 			array( 'content-area-off-canvas', 'off_canvas_content', 'Canvas content', 'VISUAL' ),
 			array( 'content-area-modal', 'modal_content', 'Modal content', 'VISUAL' ),
 			array( 'content-area-dropdown', 'dropdown_content', 'Dropdown content', 'VISUAL' ),

@@ -140,8 +140,9 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 	 */
 	private function get_wrap_tag( $settings ) {
 		$seo_elements = array(
-			'headline'                => 'text_tag',
-			'classic:custom-headline' => 'level',
+			'headline'                 => 'text_tag',
+			'classic:custom-headline'  => 'level',
+			'classic:feature-headline' => 'level',
 		);
 
 		foreach ( $seo_elements as $type => $attr ) {
@@ -179,7 +180,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 	public function initialize_nodes_to_translate() {
 
 		$this->nodes_to_translate = array(
-			'alert'                   => array(
+			'alert'                    => array(
 				'conditions' => array( '_type' => 'alert' ),
 				'fields'     => array(
 					array(
@@ -189,7 +190,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'text'                    => array(
+			'text'                     => array(
 				'conditions' => array( '_type' => 'text' ),
 				'fields'     => array(
 					array(
@@ -199,7 +200,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'quote'                   => array(
+			'quote'                    => array(
 				'conditions' => array( '_type' => 'quote' ),
 				'fields'     => array(
 					array(
@@ -214,7 +215,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'counter'                 => array(
+			'counter'                  => array(
 				'conditions' => array( '_type' => 'counter' ),
 				'fields'     => array(
 					array(
@@ -229,7 +230,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'content-area'            => array(
+			'content-area'             => array(
 				'conditions' => array( '_type' => 'content-area' ),
 				'fields'     => array(
 					array(
@@ -239,7 +240,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'breadcrumbs'             => array(
+			'breadcrumbs'              => array(
 				'conditions' => array( '_type' => 'breadcrumbs' ),
 				'fields'     => array(
 					array(
@@ -249,7 +250,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'audio'                   => array(
+			'audio'                    => array(
 				'conditions' => array( '_type' => 'audio' ),
 				'fields'     => array(
 					array(
@@ -259,7 +260,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'headline'                => array(
+			'headline'                 => array(
 				'conditions' => array( '_type' => 'headline' ),
 				'fields'     => array(
 					array(
@@ -269,17 +270,27 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'classic:custom-headline' => array(
+			'classic:custom-headline'  => array(
 				'conditions' => array( '_type' => 'classic:custom-headline' ),
 				'fields'     => array(
 					array(
 						'field'       => 'content',
-						'type'        => __( 'Classic headline text content', 'sitepress' ),
+						'type'        => __( 'Classic custom headline text content', 'sitepress' ),
 						'editor_type' => 'VISUAL',
 					),
 				),
 			),
-			'content-area-off-canvas' => array(
+			'classic:feature-headline' => array(
+				'conditions' => array( '_type' => 'classic:feature-headline' ),
+				'fields'     => array(
+					array(
+						'field'       => 'content',
+						'type'        => __( 'Classic feature headline text content', 'sitepress' ),
+						'editor_type' => 'VISUAL',
+					),
+				),
+			),
+			'content-area-off-canvas'  => array(
 				'conditions' => array( '_type' => 'content-area-off-canvas' ),
 				'fields'     => array(
 					array(
@@ -289,7 +300,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'content-area-modal'      => array(
+			'content-area-modal'       => array(
 				'conditions' => array( '_type' => 'content-area-modal' ),
 				'fields'     => array(
 					array(
@@ -299,7 +310,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'content-area-dropdown'   => array(
+			'content-area-dropdown'    => array(
 				'conditions' => array( '_type' => 'content-area-dropdown' ),
 				'fields'     => array(
 					array(
@@ -309,7 +320,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'button'                  => array(
+			'button'                   => array(
 				'conditions' => array( '_type' => 'button' ),
 				'fields'     => array(
 					array(
@@ -324,7 +335,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'video'                   => array(
+			'video'                    => array(
 				'conditions' => array( '_type' => 'video' ),
 				'fields'     => array(
 					array(
@@ -334,7 +345,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'search-inline'           => array(
+			'search-inline'            => array(
 				'conditions' => array( '_type' => 'search-inline' ),
 				'fields'     => array(
 					array(
@@ -344,7 +355,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'search-modal'            => array(
+			'search-modal'             => array(
 				'conditions' => array( '_type' => 'search-modal' ),
 				'fields'     => array(
 					array(
@@ -354,7 +365,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'search-dropdown'         => array(
+			'search-dropdown'          => array(
 				'conditions' => array( '_type' => 'search-dropdown' ),
 				'fields'     => array(
 					array(
@@ -364,12 +375,12 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					),
 				),
 			),
-			'accordion'               => array(
+			'accordion'                => array(
 				'conditions'        => array( '_type' => 'accordion' ),
 				'fields'            => array(),
 				'integration-class' => 'WPML_Cornerstone_Accordion',
 			),
-			'tabs'                    => array(
+			'tabs'                     => array(
 				'conditions'        => array( '_type' => 'tabs' ),
 				'fields'            => array(),
 				'integration-class' => 'WPML_Cornerstone_Tabs',
