@@ -172,6 +172,36 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 	public function initialize_nodes_to_translate() {
 
 		$this->nodes_to_translate = array(
+			'card'                  => array(
+				'conditions' => array( '_type' => 'card' ),
+				'fields'     => array(
+					array(
+						'field'       => 'card_front_text_content',
+						'type'        => __( 'Card: front text content', 'sitepress' ),
+						'editor_type' => 'VISUAL',
+					),
+					array(
+						'field'       => 'card_back_text_content',
+						'type'        => __( 'Card: back text content', 'sitepress' ),
+						'editor_type' => 'VISUAL',
+					),
+					array(
+						'field'       => 'anchor_text_primary_content',
+						'type'        => __( 'Card: anchor text primary content', 'sitepress' ),
+						'editor_type' => 'VISUAL',
+					),
+					array(
+						'field'       => 'anchor_text_secondary_content',
+						'type'        => __( 'Card: anchor text secondary content', 'sitepress' ),
+						'editor_type' => 'LINE',
+					),
+					array(
+						'field'       => 'anchor_href',
+						'type'        => __( 'Card: anchor link', 'sitepress' ),
+						'editor_type' => 'LINE',
+					),
+				),
+			),
 			'alert'                   => array(
 				'conditions' => array( '_type' => 'alert' ),
 				'fields'     => array(
