@@ -197,7 +197,7 @@ class WPML_Cornerstone_Translatable_Nodes implements IWPML_Page_Builders_Transla
 					[
 						'field'       => 'anchor_href',
 						'type'        => __( 'Card: anchor link', 'sitepress' ),
-						'editor_type' => 'LINE',
+						'editor_type' => 'LINK',
 					],
 				],
 			],
