@@ -34,6 +34,8 @@
         "m4tthumphrey/php-gitlab-api": "^9.0.0",
         "php-http/guzzle6-adapter": "^1.1",
         "otgs/unit-tests-framework": "~1.2.0",
-        "wpml/page-builders": "dev-develop"
+        "wpml/page-builders": "dev-develop",
+        "wpml/fp": "^0.1.2",
+        "wpml/collect": "dev-wpml-collect-rename"
     }
 }
