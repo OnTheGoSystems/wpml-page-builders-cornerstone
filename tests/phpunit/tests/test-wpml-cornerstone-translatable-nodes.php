@@ -119,4 +119,106 @@ class Test_WPML_Cornerstone_Translatable_Nodes extends OTGS_TestCase {
 
 		$this->assertEquals( $translation, $settings['text_content'] );
 	}
+
+	/**
+	 * @test
+	 * @group wpmlcore-7565
+	 */
+	public function it_gets_with_integration_class() {
+		$nodeId   = '1a2b3c4d';
+		$type     = 'slides';
+		$original = 'The original text';
+
+		$config = [
+			$type => [
+				'conditions'        => [ '_type' => $type ],
+				'fields'            => [],
+				'integration-class' => Test_Class_For_Module_With_Items::class,
+			],
+		];
+
+		$settings    = [
+			'_type'     => $type,
+			WPML_Cornerstone_Module_With_Items::ITEMS_FIELD => [
+				[ 'heading' => $original ],
+			],
+		];
+
+		$stringName = md5( $original ) . '-' . 'heading' . '-' . $nodeId;
+
+		$expectedString = new WPML_PB_String( $original, $stringName, 'Heading', 'LINE' );
+
+		\WP_Mock::onFilter( 'wpml_cornerstone_modules_to_translate' )
+		        ->with( WPML_Cornerstone_Translatable_Nodes::get_nodes_to_translate() )
+		        ->reply( $config );
+
+		$subject = new WPML_Cornerstone_Translatable_Nodes();
+		$strings = $subject->get( $nodeId, $settings );
+
+		$this->assertCount( 1, $strings );
+		$this->assertEquals( $expectedString, $strings[0] );
+	}
+
+	/**
+	 * @test
+	 * @group wpmlcore-7565
+	 */
+	public function it_updates_with_fields_in_items_config() {
+		$nodeId           = '1a2b3c4d';
+		$type             = 'slides';
+		$fieldToTranslate = 'title';
+		$original         = 'The original text';
+		$translation      = 'The text translation';
+
+		$settings    = [
+			'_type'     => $type,
+			WPML_Cornerstone_Module_With_Items::ITEMS_FIELD => [
+				[ $fieldToTranslate => $original ],
+			],
+		];
+
+		$config = [
+			$type => [
+				'conditions'     => [ '_type' => $type ],
+				'fields'         => [],
+				'fields_in_item' => [
+					WPML_Cornerstone_Module_With_Items::ITEMS_FIELD => [
+						[
+							'field'       => $fieldToTranslate,
+							'type'        => 'The slide text',
+							'editor_type' => 'LINE',
+						],
+					],
+				],
+			],
+		];
+
+		$stringName = md5( $original ) . '-' . $fieldToTranslate . '-' . $nodeId;
+
+		$string = new WPML_PB_String( $translation, $stringName, 'anything', 'anything' );
+
+		\WP_Mock::onFilter( 'wpml_cornerstone_modules_to_translate' )
+		        ->with( WPML_Cornerstone_Translatable_Nodes::get_nodes_to_translate() )
+		        ->reply( $config );
+
+		$subject  = new WPML_Cornerstone_Translatable_Nodes();
+		$settings = $subject->update( $nodeId, $settings, $string );
+
+		$this->assertEquals( $translation, $settings[ WPML_Cornerstone_Module_With_Items::ITEMS_FIELD ][0][ $fieldToTranslate ] );
+	}
+}
+
+class Test_Class_For_Module_With_Items extends WPML_Cornerstone_Module_With_Items {
+
+	public function get_fields() {
+		return [ 'heading' ];
+	}
+
+	protected function get_title( $field ) {
+		return 'Heading';
+	}
+
+	protected function get_editor_type( $field ) {
+		return 'LINE';
+	}
 }
