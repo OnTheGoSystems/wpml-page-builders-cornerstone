@@ -4,16 +4,19 @@ namespace WPML\PB\Cornerstone\Styles;
 
 use WPML\LIB\WP\Post;
 use WPML\LIB\WP\PostMock;
+use WPML\LIB\WP\WPDBMock;
 
 /**
  * @group styles
  */
 class TestHooks extends \OTGS_TestCase {
 
+	use WPDBMock;
 	use PostMock;
 
 	public function setUp() {
 		parent::setUp();
+		$this->setUpWPDBMock();
 		$this->setUpPostMock();
 	}
 
@@ -83,10 +86,10 @@ class TestHooks extends \OTGS_TestCase {
 	}
 
 	private function getLastEditMode( $postId = 0, $isTranslationEditor = false ) {
-		$lastEditMode = $this->getMockBuilder( '\WPML_PB_Last_Translation_Edit_Mode' )
-			->setMethods( [ 'is_translation_editor' ] )
-			->disableOriginalConstructor()->getMock();
-		$lastEditMode->method( 'is_translation_editor' )->with( $postId )->willReturn( $isTranslationEditor );
+		$lastEditMode = \Mockery::mock( \WPML_PB_Last_Translation_Edit_Mode::class );
+		$lastEditMode->shouldReceive( 'is_translation_editor' )
+			->with( $postId )
+			->andReturn( $isTranslationEditor );
 
 		return $lastEditMode;
 	}

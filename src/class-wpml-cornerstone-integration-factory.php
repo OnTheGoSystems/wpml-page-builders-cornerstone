@@ -14,6 +14,7 @@ class WPML_Cornerstone_Integration_Factory {
 				'WPML_Cornerstone_Media_Hooks_Factory',
 				\WPML\PB\Cornerstone\Config\Factory::class,
 				\WPML\PB\Cornerstone\Styles\Hooks::class,
+				\WPML\PB\Cornerstone\Hooks\Editor::class,
 			]
 		);
 
