@@ -54,6 +54,7 @@ function autoload_tests_classes( $class ) {
 	if ( ! $maps ) {
 		$dirs = [
 			__DIR__ . '/../../vendor/wpml/wp/tests/mocks',
+			__DIR__ . '/stub',
 		];
 
 		$maps = [];
