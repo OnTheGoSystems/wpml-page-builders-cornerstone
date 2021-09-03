@@ -9,7 +9,8 @@ use WPML\LIB\WP\Post;
 
 class Hooks implements \IWPML_Backend_Action, \IWPML_Frontend_Action, \IWPML_DIC_Action {
 
-	const META_KEY = '_cs_generated_styles';
+	const META_KEY_OLD = '_cs_generated_styles';
+	const META_KEY_V6 = '_cs_generated_tss';
 
 	/** @var callable $shouldInvalidateStyle */
 	private $shouldInvalidateStyles;
@@ -38,6 +39,7 @@ class Hooks implements \IWPML_Backend_Action, \IWPML_Frontend_Action, \IWPML_DIC
 	public function invalidateStylesInTranslation( $postId ) {
 		Maybe::of( $postId )
 			->filter( $this->shouldInvalidateStyles )
-			->map( Post::deleteMeta( Fns::__, self::META_KEY ) );
+			->map( Fns::tap( Post::deleteMeta( Fns::__, self::META_KEY_V6 ) ) )
+			->map( Fns::tap( Post::deleteMeta( Fns::__, self::META_KEY_OLD ) ) );
 	}
 }

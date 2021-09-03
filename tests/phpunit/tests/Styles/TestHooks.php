@@ -42,7 +42,8 @@ class TestHooks extends \OTGS_TestCase {
 		$postId    = 123;
 		$metaValue = 'Some generated CSS';
 
-		Post::updateMeta( $postId, Hooks::META_KEY, $metaValue );
+		Post::updateMeta( $postId, Hooks::META_KEY_OLD, $metaValue );
+		Post::updateMeta( $postId, Hooks::META_KEY_V6, $metaValue );
 
 		$lastEditMode = $this->getLastEditMode( $postId, $isTranslationEditor );
 		$dataSettings = $this->getDataSettings( $postId, $isHandlingPost );
@@ -50,7 +51,8 @@ class TestHooks extends \OTGS_TestCase {
 
 		$subject->invalidateStylesInTranslation( $postId );
 
-		$this->assertSame( $metaValue, Post::getMetaSingle( $postId, Hooks::META_KEY, true ) );
+		$this->assertSame( $metaValue, Post::getMetaSingle( $postId, Hooks::META_KEY_OLD, true ) );
+		$this->assertSame( $metaValue, Post::getMetaSingle( $postId, Hooks::META_KEY_V6, true ) );
 	}
 
 	/**
@@ -59,7 +61,8 @@ class TestHooks extends \OTGS_TestCase {
 	public function itShouldInvalidateStyles() {
 		$postId    = 123;
 
-		Post::updateMeta( $postId, Hooks::META_KEY, 'Some generated CSS' );
+		Post::updateMeta( $postId, Hooks::META_KEY_OLD, 'Some generated CSS' );
+		Post::updateMeta( $postId, Hooks::META_KEY_V6, 'Some generated CSS' );
 
 		$lastEditMode = $this->getLastEditMode( $postId, true );
 		$dataSettings = $this->getDataSettings( $postId, true );
@@ -67,7 +70,8 @@ class TestHooks extends \OTGS_TestCase {
 
 		$subject->invalidateStylesInTranslation( $postId );
 
-		$this->assertfalse( Post::getMetaSingle( $postId, Hooks::META_KEY, true ) );
+		$this->assertfalse( Post::getMetaSingle( $postId, Hooks::META_KEY_OLD, true ) );
+		$this->assertfalse( Post::getMetaSingle( $postId, Hooks::META_KEY_V6, true ) );
 	}
 
 	public function dpShouldNotInvalidateStyles() {
